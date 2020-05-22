@@ -35,7 +35,7 @@ class Api::V1::SavedShowsController < ApplicationController
   private
 
   def saved_show_params
-    params.require(:saved_show).permit(:rating, :watch_date)
+    params.require(:saved_show).permit(:rating, :watch_date, :show_id, :user_id)
   end
 
   def find_saved_show
