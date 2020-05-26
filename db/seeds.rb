@@ -13,7 +13,7 @@ User.create(username: 'lisa', password: 'password')
 response = RestClient.get('https://www.episodate.com/api/most-popular?page=1')
   tv_shows_array = JSON.parse(response)["tv_shows"]
   tv_shows_array.each do |show|
-    Show.create(name: show["name"], started_date: show["start_date"], ended_date: show["end_date"], network: show["network"], country: show["country"], status: show["status"], image: show["image_thumbnail_path"]
+    Show.create(name: show["name"], started_date: show["start_date"], ended_date: show["end_date"], network: show["network"], country: show["country"], status: show["status"], image_thumbnail_path: show["image_thumbnail_path"]
     )
 end
 
