@@ -1,7 +1,5 @@
 class Api::V1::ReviewsController < ApplicationController
   def create
-    # should find instance of saved_show instead of using new
-    # and then build the review off of that saved_show instance. this way the review is related to the saved_show and a saved_show can have many reviews
     saved_show = SavedShow.find(params[:saved_show_id])
     review = saved_show.reviews.build(review_params)
 

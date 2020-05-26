@@ -7,16 +7,6 @@ class Api::V1::SavedShowsController < ApplicationController
 
   def create
     tvShow = Show.create_with(show_params).find_or_create_by(id: params[:show_id])
-    # name: params[:name], start_date: params[:start_date], end_date: params[:end_date], network: params[:network], country: params[:country], status: params[:status], image_thumbnail_path: params[:image_thumbnail_path]
-    # tvShow = Show.find_or_create_by(name: params[:name]) do |show|
-    #   show.name = show_params[:name]
-    #   show.start_date = show_params[:start_date]
-    #   show.end_date = show_params[:end_date]
-    #   show.network = show_params[:network]
-    #   show.country = show_params[:country]
-    #   show.status = show_params[:status]
-    #   show.image_thumbnail_path = show_params[:image_thumbnail_path]
-    # end
     saved_show = tvShow.saved_shows.build(saved_show_params)
 
     if saved_show.valid?
