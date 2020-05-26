@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_222713) do
+ActiveRecord::Schema.define(version: 2020_05_26_173537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 2020_05_25_222713) do
 
   create_table "saved_shows", force: :cascade do |t|
     t.integer "rating"
-    t.string "watch_date"
     t.integer "show_id"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -34,8 +33,8 @@ ActiveRecord::Schema.define(version: 2020_05_25_222713) do
 
   create_table "shows", force: :cascade do |t|
     t.string "name"
-    t.string "started_date"
-    t.string "ended_date"
+    t.string "start_date"
+    t.string "end_date"
     t.string "network"
     t.string "country"
     t.string "status"

@@ -13,13 +13,13 @@ User.create(username: 'lisa', password: 'password')
 response = RestClient.get('https://www.episodate.com/api/most-popular?page=1')
   tv_shows_array = JSON.parse(response)["tv_shows"]
   tv_shows_array.each do |show|
-    Show.create(name: show["name"], started_date: show["start_date"], ended_date: show["end_date"], network: show["network"], country: show["country"], status: show["status"], image_thumbnail_path: show["image_thumbnail_path"]
+    Show.create(name: show["name"], start_date: show["start_date"], end_date: show["end_date"], network: show["network"], country: show["country"], status: show["status"], image_thumbnail_path: show["image_thumbnail_path"]
     )
 end
 
-SavedShow.create(rating: 4, watch_date:'2020-05-21', show_id: 3, user_id: 1)
-SavedShow.create(rating: 4, watch_date:'2020-05-21', show_id: 4, user_id: 2)
-SavedShow.create(rating: 4, watch_date:'2020-05-21', show_id: 2, user_id: 3)
+SavedShow.create(rating: 4, show_id: 3, user_id: 1)
+SavedShow.create(rating: 4, show_id: 4, user_id: 2)
+SavedShow.create(rating: 4, show_id: 2, user_id: 3)
 
 
 Review.create(spoiler: "true", content: "It was ok. Oliver Queen dies.", saved_show_id: 1)

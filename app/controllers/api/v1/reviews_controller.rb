@@ -1,6 +1,7 @@
 class Api::V1::ReviewsController < ApplicationController
   def create
-    review = Review.new(review_params)
+    saved_show = SavedShow.find(params[:saved_show_id])
+    review = saved_show.reviews.build(review_params)
 
     if review.valid?
       review.save
@@ -27,6 +28,6 @@ class Api::V1::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:spoiler, :content, :saved_show_id)
+    params.require(:review).permit(:spoiler, :content)
   end
 end
