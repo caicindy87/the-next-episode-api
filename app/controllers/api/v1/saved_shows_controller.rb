@@ -6,10 +6,18 @@ class Api::V1::SavedShowsController < ApplicationController
   end
 
   def create
-    # also need to find or create a new Show instance b/c we need to save the show if user is trying to save a show from their search
-    # then, build saved_show off the Show instance.
-    show = Show.create_with!(show_params).find_or_create_by(params[:show_id])
-    saved_show = show.saved_shows.build(saved_show_params)
+    tvShow = Show.create_with(show_params).find_or_create_by(id: params[:show_id])
+    # name: params[:name], start_date: params[:start_date], end_date: params[:end_date], network: params[:network], country: params[:country], status: params[:status], image_thumbnail_path: params[:image_thumbnail_path]
+    # tvShow = Show.find_or_create_by(name: params[:name]) do |show|
+    #   show.name = show_params[:name]
+    #   show.start_date = show_params[:start_date]
+    #   show.end_date = show_params[:end_date]
+    #   show.network = show_params[:network]
+    #   show.country = show_params[:country]
+    #   show.status = show_params[:status]
+    #   show.image_thumbnail_path = show_params[:image_thumbnail_path]
+    # end
+    saved_show = tvShow.saved_shows.build(saved_show_params)
 
     if saved_show.valid?
       saved_show.save
