@@ -12,7 +12,7 @@ class Api::V1::ShowsController < ApplicationController
 
   private
   def show_params
-    params.require(:show).permit(:name, :started_date, :ended_date, :network,:country, :status, :image)
+    params.require(:show).permit(:name, :start_date, :end_date, :network,:country, :status, :image_thumbnail_path)
   end
 end
 

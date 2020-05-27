@@ -6,7 +6,8 @@ class Api::V1::SavedShowsController < ApplicationController
   end
 
   def create
-    saved_show = SavedShow.new(saved_show_params)
+    tvShow = Show.create_with(show_params).find_or_create_by(id: params[:show_id])
+    saved_show = tvShow.saved_shows.build(saved_show_params)
 
     if saved_show.valid?
       saved_show.save
@@ -35,7 +36,11 @@ class Api::V1::SavedShowsController < ApplicationController
   private
 
   def saved_show_params
-    params.require(:saved_show).permit(:rating, :watch_date, :show_id, :user_id)
+    params.require(:saved_show).permit(:rating, :show_id, :user_id)
+  end
+
+  def show_params
+    params.require(:show).permit(:name, :start_date, :end_date, :network, :country, :status, :image_thumbnail_path)
   end
 
   def find_saved_show
