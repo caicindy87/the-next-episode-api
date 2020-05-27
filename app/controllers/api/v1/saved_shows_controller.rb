@@ -6,8 +6,8 @@ class Api::V1::SavedShowsController < ApplicationController
   end
 
   def create
-    tvShow = Show.create_with(show_params).find_or_create_by(id: params[:show_id])
-    saved_show = tvShow.saved_shows.build(saved_show_params)
+    tvShow = Show.create_with(show_params).find_or_create_by(id: params[:show][:id])
+    saved_show = tvShow.saved_shows.create_with(saved_show_params).find_or_create_by(show_id: params[:show][:id])
 
     if saved_show.valid?
       saved_show.save
