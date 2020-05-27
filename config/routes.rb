@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       resources :reviews, only: [:create, :show, :update, :destroy]
       resources :users, only: [:create, :update, :destroy]
       post "/search", to: "searches#get_shows"
+      # routes for auth
+      post "/auth", to: "auth#create"
+      get "/current_user", to: "auth#show"
     end
   end
 end
