@@ -1,4 +1,5 @@
 class Api::V1::ShowsController < ApplicationController
+  skip_before_action :authorized
 
   def index
     render json: Show.all

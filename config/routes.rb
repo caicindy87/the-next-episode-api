@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :shows, only: [:index, :show]
       resources :saved_shows, only: [:index, :create, :show, :update, :destroy]
       resources :reviews, only: [:create, :show, :update, :destroy]
-      resources :users, only: [:create, :update, :destroy]
+      resources :users, only: [:create]
       get "/search", to: "searches#get_shows"
       # routes for auth
       post "/auth", to: "auth#create"
