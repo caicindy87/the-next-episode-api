@@ -1,4 +1,6 @@
 class Api::V1::SearchesController < ApplicationController
+  skip_before_action :authorized
+
   def get_shows
     q = params["searchTerm"]
 
