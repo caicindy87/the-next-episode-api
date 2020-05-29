@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
     before_action :authorized
   
     def issue_token(user)
-      JWT.encode({user_id: user.id}, 'secret', 'HS256')
+      JWT.encode({user_id: user.id}, auth_secret, 'HS256')
     end
   
     def current_user
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::API
     def decoded_token
       if token 
         begin
-          JWT.decode(token, 'secret', true, { :algorithm => 'HS256' })
+          JWT.decode(token, auth_secret, true, { :algorithm => 'HS256' })
         rescue JWT::DecodeError
           [{}]
         end
@@ -33,5 +33,11 @@ class ApplicationController < ActionController::API
   
     def authorized
       render json: { message: "Please log in" }, status: 401 unless logged_in?
+    end
+
+    private
+
+    def auth_secret
+      ENV["AUTH_SECRET"]
     end
   end
