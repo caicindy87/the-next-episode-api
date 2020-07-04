@@ -2,15 +2,17 @@ class Api::V1::SavedShowsController < ApplicationController
   before_action :find_saved_show, only: [:show, :update, :destroy]
 
   def index
-    render json: SavedShow.all
+    user = User.find(params[:user_id])
+    render json: user.saved_shows
   end
 
   def create
     tvShow = Show.create_with(show_params).find_or_create_by(id: params[:show][:id])
-    saved_show = tvShow.saved_shows.create_with(saved_show_params).find_or_create_by(show_id: params[:show][:id])
-
+    saved_show = tvShow.saved_shows.build(saved_show_params)
+    
     if saved_show.valid?
       saved_show.save
+      
       render json: saved_show
     else
       render json: {errors: saved_show.errors.full_messages}
