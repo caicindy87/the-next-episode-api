@@ -3,7 +3,7 @@ class Api::V1::AuthController < ApplicationController
   
     def create
       user = User.find_by(username: params[:username])
-        # Bcrypt gives us the authenticate method, Do no call password_digest.
+
       if user && user.authenticate(params[:password]) 
         my_token = issue_token(user)
   
