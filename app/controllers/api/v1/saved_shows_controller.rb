@@ -2,7 +2,8 @@ class Api::V1::SavedShowsController < ApplicationController
   before_action :find_saved_show, only: [:show, :update, :destroy]
 
   def index
-    render json: SavedShow.all
+    user = User.find(params[:user_id])
+    render json: user.saved_shows
   end
 
   def create
