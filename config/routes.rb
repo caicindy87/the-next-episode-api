@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  root 'shows#index'
+  get '*path', to: 'shows#index'
+
   namespace :api do
     namespace :v1 do
       resources :shows, only: [:index, :show]
@@ -14,3 +17,4 @@ Rails.application.routes.draw do
     end
   end
 end
+
